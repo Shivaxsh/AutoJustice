@@ -26,7 +26,7 @@ $(document).ready(function() {
     const startButton = document.getElementById('startButton');
     const ctaContent = document.getElementById('ctaContent');
     const demoElements = document.querySelectorAll('.penner-equations-demo .el');
-    const engineSound = new Audio('car-sound.mp3');
+    const engineSound = new Audio('assets/sounds/car-sound.mp3');
 
     // Smoothly hide the "START" button
     startButton.style.transition = 'transform 1.0s ease, opacity 1.0s ease';
@@ -118,19 +118,32 @@ document.addEventListener('DOMContentLoaded', function () {
             const response = await fetchJSONP('https://www.carqueryapi.com/api/0.3/?cmd=getMakes');
             const brands = response.Makes;
 
-            // Populate Brand Dropdown
-            brands.forEach((brand) => {
-                const option = document.createElement('option');
-                option.value = brand.make_id;
-                option.textContent = brand.make_display;
-                brandDropdown.appendChild(option);
-            });
+                  // List of allowed brands
+        const allowedBrands = [
+            "Tata", "Mahindra", "BMW", "Mercedes-Benz", "Toyota", "Hyundai", "Kia", "Land Rover", "Volkswagen", "Skoda",
+            "Audi", "Honda", "Lexus", "MG", "Volvo", "Jaguar", "Jeep", "Porsche", "Lamborghini", "Ferrari", "Bentley",
+            "Rolls Royce", "Maserati", "Renault", "Citroen", "Nissan", "McLaren", "Mini", "Aston Martin", "BYD", "Isuzu",
+            "Force", "Lotus"
+        ];
 
-            console.log('Brands fetched successfully');
-        } catch (error) {
-            console.error('Error fetching brands:', error);
-        }
+        // Filter brands based on allowed list
+        const filteredBrands = brands.filter(brand =>
+            allowedBrands.includes(brand.make_display)
+        );
+
+        // Populate Brand Dropdown
+        filteredBrands.forEach((brand) => {
+            const option = document.createElement('option');
+            option.value = brand.make_id;
+            option.textContent = brand.make_display;
+            brandDropdown.appendChild(option);
+        });
+
+        console.log('Brands fetched and filtered successfully');
+    } catch (error) {
+        console.error('Error fetching brands:', error);
     }
+}
 
     // Fetch Models Based on Selected Brand
     async function fetchModels(brandId) {
@@ -227,52 +240,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-// Testimonial Carousel Animation
-let nextDom = document.getElementById('next');
-let prevDom = document.getElementById('prev');
-let carouselDom = document.querySelector('.carousel');
-let listItemDom = document.querySelector('.carousel .list');
-let thumbnailDom = document.querySelector('.carousel .thumbnail');
-
-nextDom.onclick = function(){
-    showSlider('next');
-}
-prevDom.onclick = function(){
-    showSlider('prev');
-}
-let timeRunning = 3000;
-let timeAutoNext = 7000;
-let runTimeOut;
-let runAutoRun = setTimeout(()=> {
-    nextDom.click();
-}, timeAutoNext);
-
-function showSlider(type){
-    let itemSlider = document.querySelectorAll('.carousel .list .item');
-    let itemThumbnail = document.querySelectorAll('.carousel .thumbnail');
-
-    if(type==='next'){
-        listItemDom.appendChild(itemSlider[0]);
-        thumbnailDom.appendChild(itemThumbnail[0]);
-        carouselDom.classList.add('next');
-    }
-    else{
-        let positionLastItem = itemSlider.length - 1;
-        listItemDom.prepend(itemSlider[positionLastItem]);
-        thumbnailDom.prepend(itemThumbnail[positionLastItem]);
-        carouselDom.classList.add('prev');
-    }
-
-    clearTimeout(runTimeOut);
-    runTimeOut = setTimeout(() => {
-        carouselDom.classList.remove('next');
-        carouselDom.classList.remove('prev');
-    }, timeRunning)
-
-    clearTimeout(runAutoRun);
-    
-}
+  let next = document.querySelector('.next')
+  let prev = document.querySelector('.prev')
   
-
-
+  next.addEventListener('click', function(){
+      let items = document.querySelectorAll('.testimonials .item')
+      document.querySelector('.testimonials').appendChild(items[0])
+  })
+  
+  prev.addEventListener('click', function(){
+      let items = document.querySelectorAll('.testimonials .item')
+      document.querySelector('.testimonials').prepend(items[items.length - 1])
+  })
   
