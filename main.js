@@ -26,7 +26,7 @@ $(document).ready(function() {
     const startButton = document.getElementById('startButton');
     const ctaContent = document.getElementById('ctaContent');
     const demoElements = document.querySelectorAll('.penner-equations-demo .el');
-    const engineSound = new Audio('car-sound.mp3');
+    const engineSound = new Audio('assets/sounds/car-sound.mp3');
 
     // Smoothly hide the "START" button
     startButton.style.transition = 'transform 1.0s ease, opacity 1.0s ease';
@@ -120,10 +120,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                   // List of allowed brands
         const allowedBrands = [
-            "Tata", "Mahindra", "BMW", "Mercedes-Benz", "Toyota", "Hyundai", "Kia", "Land Rover", "Volkswagen", "Skoda",
-            "Audi", "Honda", "Lexus", "MG", "Volvo", "Jaguar", "Jeep", "Porsche", "Lamborghini", "Ferrari", "Bentley",
-            "Rolls Royce", "Maserati", "Renault", "Citroen", "Nissan", "McLaren", "Mini", "Aston Martin", "BYD", "Isuzu",
-            "Force", "Lotus"
+            "BMW", "Mercedes-Benz", "Land Rover", "Skoda",
+            "Audi", "Lexus", "MG", "Volvo", "Jaguar", "Jeep", "Porsche", "Lamborghini", "Ferrari", "Bentley",
+            "Rolls Royce", "Maserati", "McLaren", "Mini", "Aston Martin", "BYD", "Lotus"
         ];
 
         // Filter brands based on allowed list
