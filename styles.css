@@ -1104,6 +1104,28 @@
         width: 100%;
       }
 
+      .about-text ul {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: center;
+        gap: 0.3rem;
+        padding-left: 0;
+        list-style: none;
+        text-align: center;
+      }
+    
+      .about-text ul li {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+    
+      .about-text ul i {
+        font-size: 2rem;
+        color: hsl(158, 98%, 43%);
+        margin-bottom: 0.3rem;
+      }
+
     .contact-info,
     .contact-form {
       min-width: 100%;
